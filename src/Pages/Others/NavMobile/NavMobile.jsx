@@ -18,6 +18,9 @@ const NavMobile = () => {
         <a href="/categories">Categories</a>
       </li>
       <li className=" text-slate-50 delay-100">
+        <a href="/blogs">Blogs</a>
+      </li>
+      <li className=" text-slate-50 delay-100">
         <a href="/about">About</a>
       </li>
       <li className=" text-slate-50 delay-100">

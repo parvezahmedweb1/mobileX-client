@@ -12,6 +12,9 @@ const Header = () => {
         <Link to="/categories">Categories</Link>
       </li>
       <li className=" text-slate-600 hover:text-secondary delay-100">
+        <Link to="/blogs">Blogs</Link>
+      </li>
+      <li className=" text-slate-600 hover:text-secondary delay-100">
         <Link to="/about">About</Link>
       </li>
       <li className=" text-slate-600 hover:text-secondary delay-100">
@@ -31,7 +34,7 @@ const Header = () => {
             <ul className="hidden lg:flex items-center space-x-7">
               {menuItems}
               <span className="text-slate-600">|</span>
-              <Link to="/login">
+              <Link to="/signIn">
                 <button className="bg-primary flex items-center font-semibold px-10 rounded-full py-2 text-secondary hover:bg-secondary hover:text-white delay-100">
                   Sign In{" "}
                   <span>

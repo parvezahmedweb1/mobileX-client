@@ -5,7 +5,7 @@ import ButtonPrimary from "../../../components/ButtonPrimary";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <section id="banner" className="h-[90vh] bg-primary">
+    <section id="" className="h-[90vh] bg-primary banner">
       <div className="container mx-auto h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="text-secondary text-center lg:text-left h-full flex justify-center md:justify-center lg:justify-start py-6 md:py-6 lg:py-0 items-center">
