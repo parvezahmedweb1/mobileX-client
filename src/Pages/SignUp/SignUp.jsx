@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const handleSubmit = () => {};
   return (
     <section className="banner bg-primary py-10">
       <div className="container w-full max-w-sm p-6 m-auto mx-auto bg-slate-50 rounded-md shadow-md dark:bg-gray-800">
@@ -9,7 +10,7 @@ const SignUp = () => {
           Sign Up
         </h1>
 
-        <form className="w-full max-w-md">
+        <form onSubmit={handleSubmit} className="w-full max-w-md">
           <div className="relative flex items-center mt-8">
             <span className="absolute">
               <svg
@@ -30,11 +31,12 @@ const SignUp = () => {
 
             <input
               type="text"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              name="userName"
+              className="block w-full py-3 text-gray-700 bg-white border-gray-200 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Username"
+              required
             />
           </div>
-
           <label
             htmlFor="dropzone-file"
             className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-md cursor-pointer dark:border-gray-600 dark:bg-gray-900"
@@ -53,12 +55,15 @@ const SignUp = () => {
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
               />
             </svg>
-
             <h2 className="mx-3 text-gray-400">Profile Photo</h2>
-
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input
+              id="dropzone-file"
+              type="file"
+              name="photo"
+              className="hidden border-gray-200"
+              required
+            />
           </label>
-
           <div className="relative flex items-center mt-6">
             <span className="absolute">
               <svg
@@ -76,14 +81,12 @@ const SignUp = () => {
                 />
               </svg>
             </span>
-
             <input
               type="email"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border-gray-200 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Email address"
             />
           </div>
-
           <div className="relative flex items-center mt-4">
             <span className="absolute">
               <svg
@@ -101,46 +104,30 @@ const SignUp = () => {
                 />
               </svg>
             </span>
-
             <input
               type="password"
-              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-10 py-3 text-gray-700 bg-white border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
             />
           </div>
-
-          <div className="relative flex items-center mt-4">
-            <span className="absolute">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-            </span>
-
-            <input
-              type="password"
-              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Confirm Password"
-            />
+          <div className="mt-6">
+            <select
+              id="small"
+              class="block w-full py-3 px-2 text-left text-gray-600 border-gray-200 rounded-md"
+              defaultValue={"Buyer"}
+            >
+              <option selected value="Buyer">
+                Buyer
+              </option>
+              <option value="Seller">Seller</option>
+            </select>
           </div>
-
           <div className="mt-6">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-gray-700 rounded-md  focus:outline-none focus:bg-gray-600">
               Sign Up
             </button>
           </div>
         </form>
-
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
 
@@ -150,10 +137,8 @@ const SignUp = () => {
           >
             or login with Social Media
           </a>
-
           <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
         </div>
-
         <div className="flex items-center mt-6 -mx-2">
           <button
             type="button"
@@ -162,11 +147,9 @@ const SignUp = () => {
             <svg className="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
               <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"></path>
             </svg>
-
             <span className="hidden mx-2 sm:inline">Sign in with Google</span>
           </button>
         </div>
-
         <p className="mt-8 text-xs font-light text-center text-gray-400">
           {" "}
           Already have an account?{" "}
