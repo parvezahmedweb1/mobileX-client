@@ -9,9 +9,6 @@ const Header = () => {
         <Link to="/home">Home</Link>
       </li>
       <li className=" text-slate-600 hover:text-secondary delay-100">
-        <Link to="/categories">Categories</Link>
-      </li>
-      <li className=" text-slate-600 hover:text-secondary delay-100">
         <Link to="/blogs">Blogs</Link>
       </li>
       <li className=" text-slate-600 hover:text-secondary delay-100">

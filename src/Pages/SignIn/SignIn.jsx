@@ -8,7 +8,6 @@ const SignIn = () => {
         <h1 className="text-3xl font-semibold text-center text-secondary dark:text-white">
           LogIn
         </h1>
-
         <form className="mt-6">
           <div>
             <label

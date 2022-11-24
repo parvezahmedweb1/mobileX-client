@@ -1,0 +1,20 @@
+[
+  {
+    "categoriesName": "iPhone",
+    "categoriesId": 101,
+    "images": "https://i.ibb.co/THzJ26z/iphone.png",
+    "bgColor": "#F0FDF4"
+  },
+  {
+    "categoriesName": "Samsung",
+    "categoriesId": 102,
+    "images": "https://i.ibb.co/y59GB3c/Samsung.png",
+    "bgColor": "#FEF2F2"
+  },
+  {
+    "categoriesName": "One Plus",
+    "categoriesId": 103,
+    "images": "https://i.ibb.co/z2LGJdb/Oneplus.png",
+    "bgColor": "#EFF6FF"
+  }
+]

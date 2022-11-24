@@ -8,12 +8,12 @@ import {
 import logo from "../../../assets/logo.webp";
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-white my-20">
+    <footer aria-label="Site Footer" className="bg-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center  sm:justify-start">
-              <img src={logo} alt="" />
+              <img src={logo} width={115} alt="" />
             </div>
 
             <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:mx-0 sm:max-w-xs sm:text-left">
