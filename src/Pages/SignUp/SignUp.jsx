@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/UserContext";
 
 const SignUp = () => {
-  const handleSubmit = () => {};
+  const { registerEmailAndPassword } = useContext(AuthContext);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const userName = event.target.userName.value;
+    const photo = event.target.photo.files[0];
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    registerEmailAndPassword(email, password)
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(email, userName, photo, password);
+    form.reset();
+  };
   return (
     <section className="banner bg-primary py-10">
       <div className="container w-full max-w-sm p-6 m-auto mx-auto bg-slate-50 rounded-md shadow-md dark:bg-gray-800">
@@ -61,7 +77,6 @@ const SignUp = () => {
               type="file"
               name="photo"
               className="hidden border-gray-200"
-              required
             />
           </label>
           <div className="relative flex items-center mt-6">
@@ -83,8 +98,10 @@ const SignUp = () => {
             </span>
             <input
               type="email"
+              name="email"
               className="block w-full py-3 text-gray-700 bg-white border-gray-200 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Email address"
+              required
             />
           </div>
           <div className="relative flex items-center mt-4">
@@ -108,18 +125,19 @@ const SignUp = () => {
               type="password"
               className="block w-full px-10 py-3 text-gray-700 bg-white border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
+              name="password"
+              required
             />
           </div>
           <div className="mt-6">
             <select
               id="small"
-              class="block w-full py-3 px-2 text-left text-gray-600 border-gray-200 rounded-md"
-              defaultValue={"Buyer"}
+              name="role"
+              className="block w-full py-3 px-2 text-left text-gray-600 border-gray-200 rounded-md"
+              defaultValue={"DEFAULT"}
             >
-              <option selected value="Buyer">
-                Buyer
-              </option>
-              <option value="Seller">Seller</option>
+              <option value="DEFAULT">Buyer</option>
+              <option value="seller">Seller</option>
             </select>
           </div>
           <div className="mt-6">
@@ -130,7 +148,6 @@ const SignUp = () => {
         </form>
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
-
           <a
             href="!#"
             className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
