@@ -23,11 +23,10 @@ const UserContext = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // ? update user profile
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     });
   };
   // ? google sign in

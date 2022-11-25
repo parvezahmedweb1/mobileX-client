@@ -1,0 +1,79 @@
+[
+  {
+    "categoriesId": "101",
+    "name": "Apple iPhone 11",
+    "img": "https://i.ibb.co/k4vB2YN/1-1.png",
+    "price": 100,
+    "oldPrice": 170,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "1 year",
+    "time": "10.30 PM"
+  },
+  {
+    "categoriesId": "101",
+    "name": "Apple iPhone 11 Pro",
+    "img": "https://i.ibb.co/GRw6f2J/2-1.png",
+    "price": 140,
+    "oldPrice": 190,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "2 years",
+    "time": "9.30 PM"
+  },
+  {
+    "categoriesId": "101",
+    "name": "Apple iPhone 11 Pro Max",
+    "img": "https://i.ibb.co/ByGDsmf/3-1.png",
+    "price": 200,
+    "oldPrice": 250,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "1 years",
+    "time": "8.30 AM"
+  },
+  {
+    "categoriesId": "102",
+    "name": "Samsung Galaxy S10+",
+    "img": "https://i.ibb.co/BVX0SD8/34.png",
+    "price": 180,
+    "oldPrice": 120,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "1.5 years",
+    "time": "1.30 AM"
+  },
+  {
+    "categoriesId": "102",
+    "name": "Samsung Galaxy Note9",
+    "img": "https://i.ibb.co/hX8ng20/31.png",
+    "price": 160,
+    "oldPrice": 110,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "2.5 years",
+    "time": "6.30 AM"
+  },
+  {
+    "categoriesId": "103",
+    "name": "OnePlus 7T Pro Mclaren Edition",
+    "img": "https://i.ibb.co/1bjG55Q/10.png",
+    "price": 160,
+    "oldPrice": 110,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "1 years",
+    "time": "9.30 AM"
+  },
+  {
+    "categoriesId": "103",
+    "name": "OnePlus 7T Pro",
+    "img": "https://i.ibb.co/yhm4YPw/10-1.png",
+    "price": 180,
+    "oldPrice": 140,
+    "condition": "pre-owned",
+    "location": "Narsingdi",
+    "uses": "1 years",
+    "time": "4.30 AM"
+  }
+]

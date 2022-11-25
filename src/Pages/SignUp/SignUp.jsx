@@ -1,23 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import SmallSpinner from "../../components/SmallSpinner";
 import { AuthContext } from "../../contexts/UserContext";
 
 const SignUp = () => {
-  const { registerEmailAndPassword } = useContext(AuthContext);
+  const { registerEmailAndPassword, googleSignIn, updateUserProfile, loading } =
+    useContext(AuthContext);
+  const [role, setRole] = useState("buyer");
+  const [error, setError] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const userName = event.target.userName.value;
-    const photo = event.target.photo.files[0];
     const email = event.target.email.value;
     const password = event.target.password.value;
+    console.log(userName, email, password, role);
     registerEmailAndPassword(email, password)
-      .then((res) => {})
+      .then((res) => {
+        updateUserProfile(userName)
+          .then(() => {
+            // ? update
+            toast.success("Successfully Created user");
+            console.log(res.user);
+          })
+          .catch((err) => {});
+      })
       .catch((err) => {
-        console.log(err);
+        setError(err.message);
       });
-    console.log(email, userName, photo, password);
     form.reset();
+  };
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        toast.success("Successfully Google SignUp");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
   return (
     <section className="banner bg-primary py-10">
@@ -53,32 +74,6 @@ const SignUp = () => {
               required
             />
           </div>
-          <label
-            htmlFor="dropzone-file"
-            className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-md cursor-pointer dark:border-gray-600 dark:bg-gray-900"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-gray-300 dark:text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-              />
-            </svg>
-            <h2 className="mx-3 text-gray-400">Profile Photo</h2>
-            <input
-              id="dropzone-file"
-              type="file"
-              name="photo"
-              className="hidden border-gray-200"
-            />
-          </label>
           <div className="relative flex items-center mt-6">
             <span className="absolute">
               <svg
@@ -132,17 +127,26 @@ const SignUp = () => {
           <div className="mt-6">
             <select
               id="small"
-              name="role"
               className="block w-full py-3 px-2 text-left text-gray-600 border-gray-200 rounded-md"
-              defaultValue={"DEFAULT"}
+              // defaultValue={"DEFAULT"}
+              onBlur={(event) => setRole(event.target.value)}
             >
-              <option value="DEFAULT">Buyer</option>
+              <option value="buyer">Buyer</option>
               <option value="seller">Seller</option>
             </select>
           </div>
-          <div className="mt-6">
+          <div className="mt-2">
+            {error ? (
+              <>
+                <small className="text-red-600 ">{error}</small>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="mt-2">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-gray-700 rounded-md  focus:outline-none focus:bg-gray-600">
-              Sign Up
+              {loading ? <SmallSpinner /> : "Sign Up"}
             </button>
           </div>
         </form>
@@ -158,6 +162,7 @@ const SignUp = () => {
         </div>
         <div className="flex items-center mt-6 -mx-2">
           <button
+            onClick={handleGoogleSignUp}
             type="button"
             className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
           >

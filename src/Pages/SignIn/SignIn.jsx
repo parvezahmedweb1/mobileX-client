@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import SmallSpinner from "../../components/SmallSpinner";
+import { AuthContext } from "../../contexts/UserContext";
 
 const SignIn = () => {
+  const { loginWithEmailAndPassword, googleSignIn, loading } =
+    useContext(AuthContext);
+  const [error, setError] = useState("");
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // ? login user
+    loginWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully User Login");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+    form.reset();
+  };
+  // ? handleGoogleSignIn
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully Google SignIn");
+      })
+      .catch((error) => setError(error.message));
+  };
   return (
     <section className="banner bg-primary py-10">
       <div className="container w-full max-w-sm p-6 m-auto mx-auto bg-slate-50 rounded-md shadow-md dark:bg-gray-800">
         <h1 className="text-3xl font-semibold text-center text-secondary dark:text-white">
           LogIn
         </h1>
-        <form className="mt-6">
+        <form onSubmit={handleLogin} className="mt-6">
           <div>
             <label
               htmlFor="username"
@@ -18,6 +49,7 @@ const SignIn = () => {
             </label>
             <input
               type="email"
+              name="email"
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
@@ -40,13 +72,22 @@ const SignIn = () => {
 
             <input
               type="password"
+              name="password"
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
-
-          <div className="mt-6">
+          <div className="mt-2">
+            {error ? (
+              <>
+                <small className="text-red-600 ">{error}</small>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="mt-2">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-gray-700 rounded-md  focus:outline-none focus:bg-gray-600">
-              Login
+              {loading ? <SmallSpinner /> : "Sign In"}
             </button>
           </div>
         </form>
@@ -66,6 +107,7 @@ const SignIn = () => {
 
         <div className="flex items-center mt-6 -mx-2">
           <button
+            onClick={handleGoogleSignIn}
             type="button"
             className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
           >
