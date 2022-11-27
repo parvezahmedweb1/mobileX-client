@@ -1,12 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import Blogs from "../Pages/Blogs/Blogs";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Categories from "../Pages/Home/Categories/Categories";
 import CategoryPhone from "../Pages/Home/CategoryPhone/CategoryPhone";
 import Home from "../Pages/Home/Home/Home";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,11 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: <CategoryPhone />,
-      },
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <CategoryPhone />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blogs",
@@ -44,6 +49,28 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/orders",
+        element: <MyOrders />,
+      },
+      {
+        path: "/dashboard/products",
+        element: <MyProducts />,
+      },
+      {
+        path: "/dashboard/addProduct",
+        element: <AddProduct />,
+      },
+      {
+        path: "/dashboard/allUsers",
+        element: <AllUsers />,
       },
     ],
   },

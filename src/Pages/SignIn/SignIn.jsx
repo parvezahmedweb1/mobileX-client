@@ -1,13 +1,17 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SmallSpinner from "../../components/SmallSpinner";
 import { AuthContext } from "../../contexts/UserContext";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const { loginWithEmailAndPassword, googleSignIn, loading } =
     useContext(AuthContext);
   const [error, setError] = useState("");
+  const [role] = useState("buyer");
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,8 +20,8 @@ const SignIn = () => {
     // ? login user
     loginWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log(res.user);
         toast.success("Successfully User Login");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setError(err.message);
@@ -27,9 +31,26 @@ const SignIn = () => {
   // ? handleGoogleSignIn
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then((res) => {
-        console.log(res.user);
-        toast.success("Successfully Google SignIn");
+      .then((result) => {
+        const userInfo = {
+          userName: result.user.displayName,
+          email: result.user.email,
+          role: role,
+        };
+        // ? saved the users from db
+        fetch(`http://localhost:5000/user/${result.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Successfully Google SignUp");
+            navigate(from, { replace: true });
+          })
+          .catch((err) => console.log(err));
       })
       .catch((error) => setError(error.message));
   };
@@ -42,7 +63,7 @@ const SignIn = () => {
         <form onSubmit={handleLogin} className="mt-6">
           <div>
             <label
-              htmlFor="username"
+              htmlhtmlFor="username"
               className="block text-sm text-gray-800 dark:text-gray-200"
             >
               Email
@@ -57,7 +78,7 @@ const SignIn = () => {
           <div className="mt-4">
             <div className="flex items-center justify-between">
               <label
-                htmlFor="password"
+                htmlhtmlFor="password"
                 className="block text-sm text-gray-800 dark:text-gray-200"
               >
                 Password

@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SmallSpinner from "../../components/SmallSpinner";
 import { AuthContext } from "../../contexts/UserContext";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const { registerEmailAndPassword, googleSignIn, updateUserProfile, loading } =
     useContext(AuthContext);
   const [role, setRole] = useState("buyer");
@@ -15,14 +18,30 @@ const SignUp = () => {
     const userName = event.target.userName.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(userName, email, password, role);
+    const userInfo = {
+      userName,
+      email,
+      role: role,
+    };
     registerEmailAndPassword(email, password)
       .then((res) => {
         updateUserProfile(userName)
           .then(() => {
             // ? update
-            toast.success("Successfully Created user");
-            console.log(res.user);
+            // ? saved the users from db
+            fetch(`http://localhost:5000/user/${email}`, {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                toast.success("Successfully Created user");
+                navigate(from, { replace: true });
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => {});
       })
@@ -34,7 +53,25 @@ const SignUp = () => {
   const handleGoogleSignUp = () => {
     googleSignIn()
       .then((result) => {
-        toast.success("Successfully Google SignUp");
+        const userInfo = {
+          userName: result.user.displayName,
+          email: result.user.email,
+          role: role,
+        };
+        // ? saved the users from db
+        fetch(`http://localhost:5000/user/${result.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Successfully Google SignUp");
+            navigate(from, { replace: true });
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => {
         setError(err.message);

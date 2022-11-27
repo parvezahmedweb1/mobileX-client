@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Spinner from "../../../components/Spinner";
 import CategoriesCard from "../../Others/CategoriesCard/CategoriesCard";
 const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     axios.get("http://localhost:5000/categories").then((res) => {
+      setLoading(false);
       setCategories(res.data.data);
     });
   }, []);
@@ -13,11 +17,15 @@ const Categories = () => {
       <h2 className="text-3xl font-semibold text-secondary mb-8">
         Good things are waiting for you
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {categories.map((category) => (
-          <CategoriesCard key={category._id} category={category} />
-        ))}
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {categories.map((category) => (
+            <CategoriesCard key={category._id} category={category} />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
