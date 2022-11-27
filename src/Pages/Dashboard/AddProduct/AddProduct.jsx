@@ -1,27 +1,54 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryId, setCategoryId] = useState("101");
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.productName.value;
+    const image = form.file.files[0];
     const location = form.location.value;
     const oldPrice = form.newPrice.value;
     const price = form.sellPrice.value;
     const condition = form.condition.value;
     const uses = form.uses.value;
-    console.log(name, categoryName, location, oldPrice, price, condition, uses);
-    /* const img = event.target.file.files[0];
+    const postDate = new Date().toLocaleTimeString();
     const formData = new FormData();
-    formData.append("img", img);
-    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`;
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=9a371f49c9d2d6727191ea51c31ccc58`;
     fetch(url, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data)); */
+      .then((data) => {
+        if (data.success) {
+          const product = {
+            categoriesId: categoryId,
+            name,
+            img: data.data.url,
+            price,
+            oldPrice,
+            condition,
+            location,
+            uses,
+            time: postDate,
+          };
+          fetch("http://localhost:5000/addProduct", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast.success("Product added successfully");
+            });
+        }
+      });
   };
   return (
     <section className="container mx-auto my-10">
@@ -76,11 +103,11 @@ const AddProduct = () => {
                         id="country"
                         name="country"
                         autoComplete="brand-name"
-                        onBlur={(event) => setCategoryName(event.target.value)}
+                        onBlur={(event) => setCategoryId(event.target.value)}
                       >
-                        <option value={"iPhone"}>iPhone</option>
-                        <option value={"samsung"}>Samsung</option>
-                        <option value={"one plus"}>One Plus</option>
+                        <option value={"101"}>iPhone</option>
+                        <option value={"102"}>Samsung</option>
+                        <option value={"103"}>One Plus</option>
                       </select>
                     </div>
                   </div>
@@ -184,7 +211,7 @@ const AddProduct = () => {
                     className="block w-full rounded-lg bg-black p-2.5 text-sm text-white"
                     type="submit"
                   >
-                    Pay Now
+                    Add Product
                   </button>
                 </div>
               </form>
