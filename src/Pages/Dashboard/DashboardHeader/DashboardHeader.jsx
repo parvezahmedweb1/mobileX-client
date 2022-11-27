@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.webp";
 import { AuthContext } from "../../../contexts/UserContext";
 import useAdmin from "../../../Hooks/useAdmin";
+import useBuyer from "../../../Hooks/useBuyer";
 import NavMobile from "../../Others/NavMobile/NavMobile";
 const DashboardHeader = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user.email);
+  const [isBuyer] = useBuyer(user.email);
   const menuItems = (
     <>
-      <li className=" text-slate-600 hover:text-secondary delay-100">
-        <Link to="/dashboard/orders">My Orders</Link>
-      </li>
+      {isBuyer && (
+        <li className=" text-slate-600 hover:text-secondary delay-100">
+          <Link to="/dashboard/orders">My Orders</Link>
+        </li>
+      )}
       <li className=" text-slate-600 hover:text-secondary delay-100">
         <Link to="/dashboard/products">My Products</Link>
       </li>
