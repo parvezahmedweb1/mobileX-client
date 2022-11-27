@@ -29,7 +29,7 @@ const SignUp = () => {
           .then(() => {
             // ? update
             // ? saved the users from db
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://mobilex-server.vercel.app/user/${email}`, {
               method: "PUT",
               headers: {
                 "content-type": "application/json",
@@ -59,7 +59,7 @@ const SignUp = () => {
           role: role,
         };
         // ? saved the users from db
-        fetch(`http://localhost:5000/user/${result.email}`, {
+        fetch(`https://mobilex-server.vercel.app/user/${result.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

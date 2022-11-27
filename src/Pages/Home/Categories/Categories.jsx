@@ -7,9 +7,9 @@ const Categories = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/categories").then((res) => {
-      setLoading(false);
+    axios.get("https://mobilex-server.vercel.app/categories").then((res) => {
       setCategories(res.data.data);
+      setLoading(false);
     });
   }, []);
   return (

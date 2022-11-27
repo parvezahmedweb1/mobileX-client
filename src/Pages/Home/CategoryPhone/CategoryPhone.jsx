@@ -11,10 +11,12 @@ const CategoryPhone = () => {
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5000/products/${id}`).then((res) => {
-      setProducts(res.data.data);
-      setLoading(false);
-    });
+    axios
+      .get(`https://mobilex-server.vercel.app/products/${id}`)
+      .then((res) => {
+        setProducts(res.data.data);
+        setLoading(false);
+      });
   }, [id]);
   const [booking, setBooking] = useState(null);
   return (

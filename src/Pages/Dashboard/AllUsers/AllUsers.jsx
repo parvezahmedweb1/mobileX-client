@@ -12,7 +12,7 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users`);
+      const res = await fetch(`https://mobilex-server.vercel.app/users`);
       const data = await res.json();
       return data.data;
     },
@@ -21,7 +21,7 @@ const AllUsers = () => {
     return <Spinner />;
   }
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://mobilex-server.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

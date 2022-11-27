@@ -38,7 +38,7 @@ const SignIn = () => {
           role: role,
         };
         // ? saved the users from db
-        fetch(`http://localhost:5000/user/${result.email}`, {
+        fetch(`https://mobilex-server.vercel.app/user/${result.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

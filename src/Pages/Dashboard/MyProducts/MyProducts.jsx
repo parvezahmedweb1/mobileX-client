@@ -6,7 +6,7 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/seller/${user.email}`)
+    fetch(`https://mobilex-server.vercel.app/seller/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);

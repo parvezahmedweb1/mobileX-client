@@ -38,7 +38,7 @@ const AddProduct = () => {
             time: postDate,
             email: user.email,
           };
-          fetch("http://localhost:5000/addProduct", {
+          fetch("https://mobilex-server.vercel.app/addProduct", {
             method: "POST",
             headers: {
               "content-type": "application/json",
