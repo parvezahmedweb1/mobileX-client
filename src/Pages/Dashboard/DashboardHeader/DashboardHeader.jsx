@@ -4,10 +4,12 @@ import logo from "../../../assets/logo.webp";
 import { AuthContext } from "../../../contexts/UserContext";
 import useAdmin from "../../../Hooks/useAdmin";
 import useBuyer from "../../../Hooks/useBuyer";
+import useSeller from "../../../Hooks/useSeller";
 import NavMobile from "../../Others/NavMobile/NavMobile";
 const DashboardHeader = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user.email);
+  const [isSeller] = useSeller(user.email);
   const [isBuyer] = useBuyer(user.email);
   const menuItems = (
     <>
@@ -16,12 +18,16 @@ const DashboardHeader = () => {
           <Link to="/dashboard/orders">My Orders</Link>
         </li>
       )}
-      <li className=" text-slate-600 hover:text-secondary delay-100">
-        <Link to="/dashboard/products">My Products</Link>
-      </li>
-      <li className=" text-slate-600 hover:text-secondary delay-100">
-        <Link to="/dashboard/addProduct">Add Product</Link>
-      </li>
+      {isSeller && (
+        <>
+          <li className=" text-slate-600 hover:text-secondary delay-100">
+            <Link to="/dashboard/products">My Products</Link>
+          </li>
+          <li className=" text-slate-600 hover:text-secondary delay-100">
+            <Link to="/dashboard/addProduct">Add Product</Link>
+          </li>
+        </>
+      )}
       {isAdmin && (
         <li className=" text-slate-600 hover:text-secondary delay-100">
           <Link to="/dashboard/allUsers">All Users</Link>
