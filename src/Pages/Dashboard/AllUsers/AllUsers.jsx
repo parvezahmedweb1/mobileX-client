@@ -1,10 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
 import User from "../../Others/User/User";
 
 const AllUsers = () => {
-  const { data: userInfo = [], isLoading } = useQuery({
+  const {
+    data: userInfo = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/users`);
@@ -18,7 +23,13 @@ const AllUsers = () => {
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Successfully delete user");
+        refetch();
+      });
   };
   return (
     <div className="container mx-auto">
