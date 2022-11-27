@@ -1,7 +1,6 @@
 import React from "react";
-import ButtonPrimary from "../../../components/ButtonPrimary";
 
-const PhoneCard = ({ product }) => {
+const PhoneCard = ({ product, setBooking }) => {
   const { name, img, price, oldPrice, condition, location, uses, time } =
     product;
   return (
@@ -59,15 +58,13 @@ const PhoneCard = ({ product }) => {
           </div>
         </dl>
       </div>
-      <div>
-        <ButtonPrimary
-          classes={
-            "bg-secondary text-primary py-4 mx-auto px-28 rounded-full mt-4 text-center block"
-          }
-        >
-          Buy Now
-        </ButtonPrimary>
-      </div>
+      <label
+        onClick={() => setBooking(product)}
+        htmlFor="booking-modal"
+        className="btn w-full mt-4"
+      >
+        Buy Now
+      </label>
     </div>
   );
 };

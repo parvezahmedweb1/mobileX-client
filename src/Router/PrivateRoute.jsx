@@ -6,12 +6,13 @@ import { AuthContext } from "../contexts/UserContext";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  if (user && user.uid) {
-    return children;
-  }
   if (loading) {
     return <Spinner />;
   }
+  if (user && user.uid) {
+    return children;
+  }
+
   return <Navigate to="/signIn" state={{ from: location }} replace></Navigate>;
 };
 

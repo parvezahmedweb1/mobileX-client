@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
   const [categoryId, setCategoryId] = useState("101");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +36,7 @@ const AddProduct = () => {
             location,
             uses,
             time: postDate,
+            email: user.email,
           };
           fetch("http://localhost:5000/addProduct", {
             method: "POST",
