@@ -2,24 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.webp";
 import { AuthContext } from "../../../contexts/UserContext";
+import useAdmin from "../../../Hooks/useAdmin";
 import NavMobile from "../../Others/NavMobile/NavMobile";
 const DashboardHeader = () => {
   const { user } = useContext(AuthContext);
-  console.log(user.email);
-  /*  useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, [user.email]); */
-  /*  const { data } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/${user.email}`);
-      const data = await res.json();
-      return data;
-    },
-  });
-  console.log(data); */
+  const [isAdmin] = useAdmin(user.email);
   const menuItems = (
     <>
       <li className=" text-slate-600 hover:text-secondary delay-100">
@@ -31,9 +18,11 @@ const DashboardHeader = () => {
       <li className=" text-slate-600 hover:text-secondary delay-100">
         <Link to="/dashboard/addProduct">Add Product</Link>
       </li>
-      <li className=" text-slate-600 hover:text-secondary delay-100">
-        <Link to="/dashboard/allUsers">All Users</Link>
-      </li>
+      {isAdmin && (
+        <li className=" text-slate-600 hover:text-secondary delay-100">
+          <Link to="/dashboard/allUsers">All Users</Link>
+        </li>
+      )}
     </>
   );
   return (
