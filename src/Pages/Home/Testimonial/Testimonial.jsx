@@ -1,5 +1,7 @@
 import React from "react";
-
+import img1 from "../../../assets/testimoniay/testim-2.jpg";
+import img2 from "../../../assets/testimoniay/testim-3.jpg";
+import img3 from "../../../assets/testimoniay/testim-4.jpg";
 const Testimonial = () => {
   return (
     <section className="bg-white my-20">
@@ -12,7 +14,7 @@ const Testimonial = () => {
             <div className="flex items-center">
               <img
                 alt="Man"
-                src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                src={img1}
                 className="h-16 w-16 rounded-full object-cover"
               />
 
@@ -61,21 +63,22 @@ const Testimonial = () => {
                 </div>
 
                 <p className="mt-1 text-lg font-medium text-gray-700">
-                  Paul Starr
+                  Jon Starr
                 </p>
               </div>
             </div>
 
             <p className="mt-4 text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              voluptatem alias ut provident sapiente repellendus.
+              Their behaviour is just great. We had a good deal with them .
+              thank you for keeping up your words as you said ,may you have a
+              wonderful progressive future.
             </p>
           </blockquote>
           <blockquote className="rounded-lg bg-gray-100 p-8">
             <div className="flex items-center">
               <img
                 alt="Man"
-                src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                src={img2}
                 className="h-16 w-16 rounded-full object-cover"
               />
 
@@ -130,15 +133,16 @@ const Testimonial = () => {
             </div>
 
             <p className="mt-4 text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              voluptatem alias ut provident sapiente repellendus.
+              I did not expect to get such a service in a pandemic situation.
+              Very good initiative. If the situation gets better, more services
+              will come. Thanks to you!
             </p>
           </blockquote>
           <blockquote className="rounded-lg bg-gray-100 p-8">
             <div className="flex items-center">
               <img
                 alt="Man"
-                src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                src={img3}
                 className="h-16 w-16 rounded-full object-cover"
               />
 
@@ -186,15 +190,15 @@ const Testimonial = () => {
                   </svg>
                 </div>
 
-                <p className="mt-1 text-lg font-medium text-gray-700">
-                  Paul Starr
-                </p>
+                <p className="mt-1 text-lg font-medium text-gray-700">Joha</p>
               </div>
             </div>
 
             <p className="mt-4 text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              voluptatem alias ut provident sapiente repellendus.
+              There was no such service like mobileX in our area before. It's
+              great to be able to sell so beautifully online. I did not expect
+              to get such service in Chuadanga. We will get many benefits if we
+              get such service in future.
             </p>
           </blockquote>
         </div>

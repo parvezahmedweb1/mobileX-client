@@ -36,7 +36,7 @@ const PhoneCard = ({ product, setBooking }) => {
             </svg>
 
             <div className="mt-1.5 sm:ml-3 sm:mt-0">
-              <p className="text-gray-500">Parking</p>
+              <p className="text-gray-500">Pending</p>
             </div>
           </div>
         </div>

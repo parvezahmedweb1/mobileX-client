@@ -83,7 +83,7 @@ const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-900">Our Services</p>
+              <p className="text-lg font-medium text-gray-900">Our Phones</p>
 
               <nav aria-label="Footer Services Nav" className="mt-8">
                 <ul className="space-y-4 text-sm">
@@ -92,7 +92,7 @@ const Footer = () => {
                       className="text-gray-700 transition hover:text-gray-700/75"
                       href="/"
                     >
-                      Web Development
+                      Apple
                     </a>
                   </li>
 
@@ -101,7 +101,7 @@ const Footer = () => {
                       className="text-gray-700 transition hover:text-gray-700/75"
                       href="/"
                     >
-                      Web Design
+                      Samsung
                     </a>
                   </li>
 
@@ -110,16 +110,7 @@ const Footer = () => {
                       className="text-gray-700 transition hover:text-gray-700/75"
                       href="/"
                     >
-                      Marketing
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="text-gray-700 transition hover:text-gray-700/75"
-                      href="/"
-                    >
-                      Google Ads
+                      One Plus
                     </a>
                   </li>
                 </ul>

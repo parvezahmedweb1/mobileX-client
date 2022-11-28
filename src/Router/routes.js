@@ -4,11 +4,13 @@ import Main from "../Layout/Main";
 import Blogs from "../Pages/Blogs/Blogs";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Categories from "../Pages/Home/Categories/Categories";
 import CategoryPhone from "../Pages/Home/CategoryPhone/CategoryPhone";
 import Home from "../Pages/Home/Home/Home";
+import Error from "../Pages/Others/Error/Error";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
@@ -17,6 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -55,7 +58,12 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement: <Error />,
     children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
       {
         path: "/dashboard/orders",
         element: <MyOrders />,
