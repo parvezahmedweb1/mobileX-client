@@ -4,13 +4,11 @@ This is a Website for mobileX build with React JS.
 
 ## Live Site
 
-Firebase Link: [mobileX](https://iaccademy.web.app/)
+Firebase Link: [mobileX](https://mobilex-eb7d2.web.app/)
 
 Code : [github](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-parvezahmedweb1)
 
 ## Server Site
-
-Versel Link: [mobileX](https://iacademy-server.vercel.app/)
 
 Code Link: [github](https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-parvezahmedweb1)
 
