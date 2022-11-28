@@ -11,7 +11,7 @@ const MyProducts = () => {
       .then((data) => {
         setProducts(data.data);
       });
-  }, [user.email]);
+  }, [user?.email]);
   console.log(products);
   return (
     <div className="container mx-auto my-10">

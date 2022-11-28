@@ -31,7 +31,7 @@ const MyOrders = () => {
 
               <div className="text-center border rounded-md">
                 <h4>{product.customerName}</h4>
-                <p>{product.email}</p>
+                <p>{product?.email}</p>
                 <p>{product.phone}</p>
                 <p>{product.location}</p>
               </div>

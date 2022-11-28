@@ -8,9 +8,9 @@ import useSeller from "../../../Hooks/useSeller";
 import NavMobile from "../../Others/NavMobile/NavMobile";
 const DashboardHeader = () => {
   const { user } = useContext(AuthContext);
-  const [isAdmin] = useAdmin(user.email);
-  const [isSeller] = useSeller(user.email);
-  const [isBuyer] = useBuyer(user.email);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
+  const [isBuyer] = useBuyer(user?.email);
   const menuItems = (
     <>
       {isBuyer && (
